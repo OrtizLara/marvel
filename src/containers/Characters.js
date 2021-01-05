@@ -24,6 +24,10 @@ cardContainer:{
 },
 charactersContainer: {
     overflow: 'auto'
+},
+loading: {
+    fontSize: 24,
+    textAlign: 'center'
 }
 });
 
@@ -48,7 +52,7 @@ function Characters({classes,fetchList, characters, error, loading}) {
           <Input onChange={handleSetSearchText} placeholder="Search character..." inputProps={{ 'aria-label': 'description' }} />
       </div>
      <div className={classes.cardContainer}> 
-     { characters?.length && characters.map((character) => {
+     { characters?.length ? characters.map((character) => {
         if((searchText && character.name.toLowerCase().includes(searchText)) || !searchText) {
             return(
                 <Character
@@ -57,10 +61,11 @@ function Characters({classes,fetchList, characters, error, loading}) {
                 
                 />     
             )
+        } else {
+            return null
         }
- 
-     }
-      )}
+     }) : <div className={classes.loading}> Loading...</div>
+    }
       </div>
       </div>)
 }

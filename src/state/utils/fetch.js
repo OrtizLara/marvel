@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default ( url, method, body ) => {
+const fetch = ( url, method, body ) => {
     const options = {
         url,
         method,
@@ -24,3 +24,5 @@ function requestHeaders( ) {
         "Content-Type": "application/json",
     };
 }
+
+export default fetch
